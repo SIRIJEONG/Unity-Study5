@@ -40,7 +40,29 @@ public class PlayerControler : MonoBehaviour
         {
             return;
         }
-        if (Input.GetMouseButtonDown(0) && jumpCount < 3)
+        //LEGACY:
+        //if (Input.GetMouseButtonDown(0) && jumpCount < 3)
+        //{
+        //    jumpCount += 1;
+        //    playerRigid.velocity = Vector2.zero;
+        //    playerRigid.AddForce(new Vector2(0, jumpForce));
+        //    playerAudio.Play();
+
+        //}
+        //else if (Input.GetMouseButtonDown(0) && 0 < playerRigid.velocity.y)
+        //{
+        //    playerRigid.velocity = playerRigid.velocity * 0.5f;
+        //}
+
+
+        //Jump();
+        animator.SetBool("Ground", isGrounded);
+    }
+
+
+    public void Jump()
+    {
+        if (jumpCount < 3)
         {
             jumpCount += 1;
             playerRigid.velocity = Vector2.zero;
@@ -48,11 +70,10 @@ public class PlayerControler : MonoBehaviour
             playerAudio.Play();
 
         }
-        else if (Input.GetMouseButtonDown(0) && 0 < playerRigid.velocity.y)
+        else if ( 0 < playerRigid.velocity.y)
         {
             playerRigid.velocity = playerRigid.velocity * 0.5f;
         }
-        animator.SetBool("Ground", isGrounded);
     }
 
     private void Die()
